@@ -2,23 +2,44 @@
 
 module.exports =
 
-#    subscriptions: null
-
     activate: ->
         require('atom-package-deps').install('linter-fountain')
-#        @subscriptions = new CompositeDisposable()
-        console.log(">>> PACKAGE \"fountain-linter\" ACTIVATED <<<")
 
     dectivate: ->
-        console.log(">>> PACKAGE \"fountain-linter\" DEACTIVATED <<<")
 
     provideLinter: ->
         name: 'linter-fountain',
         grammarScopes: ['source.fountain'],
         scope: 'file',
-        lintOnChange: true,
+        lintsOnChange: true,
         lint: (textEditor) =>
-            console.log("boob")
-            console.log(arguments)
-            console.log(textEditor)
+            editorPath = textEditor.getPath()
+            lintArray = []
+            lines = textEditor.getText().split(/\n/)
+            for line, index in lines
+                start = null
+                end = null
+                level = null
+                excerpt = null
+                description = null
+                [start, end, level, excerpt, description] = @lintLine(line)
+                if (start != null && end != null)
+                    lintArray.push({
+                        severity: level,
+                        location: {
+                          file: editorPath,
+                          position: [[index, start], [index, end]],
+                        },
+                        excerpt: excerpt,
+                        description: description
+                    })
+#            console.log(lintArray)
+            lintArray
 
+    lintLine: (line) ->
+        emptyHeading =  /^\s*#+(.*)/
+        matchedLine = line.match(emptyHeading)
+        if (matchedLine && !matchedLine[1].trim().length)
+            [0, line.length, "warning", "Untitled Heading", "This heading contains no textual content."]
+        else
+            [null, null, null, null, null]

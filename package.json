@@ -1,12 +1,14 @@
 {
   "name": "linter-fountain",
   "main": "./lib/linter-fountain",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Fountain Linter Package",
+  "repository": "https://github.com/jrbostic/linter-fountain",
   "keywords": ["linter-fountain", "fountain"],
   "engines": {
     "atom": "*"
   },
+  "package-deps": ["linter"],
   "dependencies": {
     "atom-linter": "~10.0.0",
     "atom-package-deps": "^4.5.0"
