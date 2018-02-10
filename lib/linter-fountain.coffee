@@ -33,13 +33,12 @@ module.exports =
                         excerpt: excerpt,
                         description: description
                     })
-#            console.log(lintArray)
             lintArray
 
     lintLine: (line) ->
         emptyHeading =  /^\s*#+(.*)/
         matchedLine = line.match(emptyHeading)
         if (matchedLine && !matchedLine[1].trim().length)
-            [0, line.length, "warning", "Untitled Heading", "This heading contains no textual content."]
+            [0, line.length, "warning", "Blank Heading", "This heading contains no textual content."]
         else
             [null, null, null, null, null]
