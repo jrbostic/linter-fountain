@@ -14,5 +14,7 @@ Current Linting Support Cases
 **Warnings**
 
 * Blank Headings/Sections
+* Improper Nesting of Headings
+* Unbalanced Style Characters
 
 **Info**
