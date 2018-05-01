@@ -1,7 +1,7 @@
 {
   "name": "linter-fountain",
   "main": "./lib/linter-fountain",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Fountain Linter Package",
   "repository": "https://github.com/jrbostic/linter-fountain",
   "keywords": [
